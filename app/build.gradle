@@ -45,12 +45,12 @@ ndkVersion "26.3.11579264"
             jniLibs.srcDir 'libs'
         }
         externalNativeBuild {
-           // ndkBuild {
-         //       path 'jni/Android.mk'
-            //}
-            cmake {
-                 path 'jni/CMakeLists.txt'
-             }
+           ndkBuild {
+                path 'jni/Android.mk'
+            }
+          //  cmake {
+             //    path 'jni/CMakeLists.txt'
+          //   }
         }
        
     }
