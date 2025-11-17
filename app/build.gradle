@@ -12,22 +12,17 @@ android {
         namespace "org.libsdl.app"
     }
     compileSdkVersion 35
-ndkVersion "26.3.11579264"
+    ndkVersion "26.3.11579264"
     defaultConfig {
         minSdkVersion 21
         targetSdkVersion 35
         versionCode 1
         versionName "1.0"
         externalNativeBuild {
-            ndkBuild {
-               arguments "APP_PLATFORM=android-21"
-               abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-          }
-          //   cmake {
-           //      arguments "-DANDROID_APP_PLATFORM=android-19", "-DANDROID_STL=c++_static"
-                // abiFilters 'armeabi-v7a', 'arm64-v8a', 'x86', 'x86_64'
-             //    abiFilters 'arm64-v8a'
-           //  }
+            cmake {
+                arguments "-DANDROID_APP_PLATFORM=android-21", "-DANDROID_STL=c++_shared"
+                abiFilters 'arm64-v8a'
+            }
         }
     }
     buildTypes {
@@ -45,14 +40,10 @@ ndkVersion "26.3.11579264"
             jniLibs.srcDir 'libs'
         }
         externalNativeBuild {
-           ndkBuild {
-                path 'jni/Android.mk'
+            cmake {
+                path 'jni/CMakeLists.txt'
             }
-          //  cmake {
-             //    path 'jni/CMakeLists.txt'
-          //   }
         }
-       
     }
     lint {
         abortOnError false
